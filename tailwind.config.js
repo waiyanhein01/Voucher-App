@@ -4,6 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
     'node_modules/preline/dist/*.js',
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     fontFamily : {
@@ -11,6 +12,6 @@ export default {
     },
     extend: {},
   },
-  plugins: [require('preline/plugin'),],
+  plugins: [require('preline/plugin','flowbite/plugin'),],
 }
 
