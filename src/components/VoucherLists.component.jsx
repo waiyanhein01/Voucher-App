@@ -1,7 +1,7 @@
 import React from "react";
 import { HiOutlinePencil, HiOutlineTrash } from "react-icons/hi2";
 
-const ProductListsComponent = () => {
+const VoucherListsComponent = () => {
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -11,10 +11,10 @@ const ProductListsComponent = () => {
               #
             </th>
             <th scope="col" className="px-6 py-3">
-              Product Name
+              Customer Name
             </th>
             <th scope="col" className="px-6 py-3 text-end">
-              Price
+              Voucher No
             </th>
             <th scope="col" className="px-6 py-3 text-end">
               Date
@@ -31,9 +31,9 @@ const ProductListsComponent = () => {
               scope="row"
               className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
             >
-              Apple MacBook Pro 17"
+              Wai Yan
             </td>
-            <td className="px-6 py-4 text-end">2999</td>
+            <td className="px-6 py-4 text-end">#0078</td>
             <div className=" flex flex-col py-4 items-end justify-center text-stone-400">
             <td className="px-6 text-end">Sep 9 2024</td>
             <td className="px-6 text-end">8:54 PM</td>
@@ -61,4 +61,4 @@ const ProductListsComponent = () => {
   );
 };
 
-export default ProductListsComponent;
+export default VoucherListsComponent;
