@@ -1,16 +1,15 @@
 import React from "react";
-import LayoutComponent from "../components/Layout.component";
 import ModuleBtnComponent from "../components/ModuleBtn.component";
-import { HiCircleStack, HiDocumentText, HiMiniComputerDesktop } from "react-icons/hi2";
+import { HiCircleStack, HiDocumentText, HiMiniComputerDesktop, HiMiniUser, HiShieldCheck } from "react-icons/hi2";
 import ContainerComponent from "../components/Container.component";
 
 const DashboardPage = () => {
   return (
     <ContainerComponent>
-      <div className=" grid md:grid-cols-3 grid-rows-3 gap-3">
+      <div className=" grid md:grid-cols-2 grid-rows-2 gap-3">
         <div className=" col-span-1">
           <ModuleBtnComponent
-            name="Product Module"
+            name="Product"
             icon={<HiCircleStack className=" size-16" />}
             url="/product"
           />
@@ -18,7 +17,7 @@ const DashboardPage = () => {
 
         <div className=" col-span-1">
           <ModuleBtnComponent
-            name="Sale Module"
+            name="Sale"
             icon={<HiMiniComputerDesktop className=" size-16"/>}
             url="/sale"
           />
@@ -26,9 +25,17 @@ const DashboardPage = () => {
 
         <div className=" col-span-1">
           <ModuleBtnComponent
-            name="Voucher Module"
+            name="Voucher"
             icon={<HiDocumentText className=" size-16" />}
             url="/voucher"
+          />
+        </div>
+
+        <div className=" col-span-1">
+          <ModuleBtnComponent
+            name="About"
+            icon={<HiShieldCheck className=" size-16" />}
+            url="/about"
           />
         </div>
       </div>

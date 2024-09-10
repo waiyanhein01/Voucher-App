@@ -4,3 +4,4 @@ export {default as VoucherPage} from './Voucher.page'
 export {default as NotFoundPage} from './NotFound.page'
 export {default as ProductPage} from './Product.page'
 export {default as ProductDetailPage} from './ProductDetail.page'
+export {default as AboutPage} from "./About.page"
