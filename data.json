@@ -1,0 +1,16 @@
+{
+  "products": [
+    {
+      "id": 9,
+      "product_name": "Samsung Galaxy Book Pro",
+      "price": 1400,
+      "create_at": "2023-09-15 21:15:00"
+    },
+    {
+      "id": 10,
+      "product_name": "LG Gram 16",
+      "price": 1700,
+      "create_at": "2024-03-05 13:10:00"
+    }
+  ]
+}
