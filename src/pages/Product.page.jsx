@@ -9,7 +9,7 @@ const ProductPage = () => {
   return (
     <ContainerComponent>
       <BreadcrumbComponent currentPage={"Product Module"}/>
-      <SearchCreateBtnComponent btnName={"Create New Product"} placeholder={"Search products"} icon={<HiMiniPlus className=" size-5" />}/>
+      <SearchCreateBtnComponent url={"create-product"} btnName={"Create New Product"} placeholder={"Search products"} icon={<HiMiniPlus className=" size-5" />}/>
       <ProductListsComponent/>
     </ContainerComponent>
   )

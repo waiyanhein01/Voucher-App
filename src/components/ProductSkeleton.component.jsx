@@ -2,7 +2,7 @@ import React from "react";
 
 const ProductSkeletonComponent = () => {
 
-    const length = 5
+    const length = 5;
     const number = Array.from({ length }, (_, i) => i + 1);
     
   return (
