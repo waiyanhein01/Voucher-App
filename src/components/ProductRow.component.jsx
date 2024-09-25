@@ -7,12 +7,12 @@ import { lineSpinner } from "ldrs";
 lineSpinner.register();
 
 const ProductRowComponent = ({
-  product: { id, product_name, price, create_at },
+  product: { id, product_name, price, created_at },
 }) => {
   const [deleteLoading, setDeleteLoading] = useState(false);
 
   const { mutate } = useSWRConfig();
-  const date = new Date(create_at);
+  const date = new Date(created_at);
   const currentDay = date.toLocaleDateString("en-US", {
     // weekday: "long",
     year: "numeric",

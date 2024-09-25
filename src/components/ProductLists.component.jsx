@@ -32,7 +32,7 @@ const ProductListsComponent = () => {
               Price
             </th>
             <th scope="col" className="px-6 py-3 text-end">
-              Create At
+              Created At
             </th>
             <th scope="col" className="px-6 py-3 text-end">
               Action

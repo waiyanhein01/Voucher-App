@@ -7,8 +7,8 @@ const ProductSkeletonComponent = () => {
     
   return (
     <>
-      {number.map((num) => (
-        <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+      {number.map((num,index) => (
+        <tr key={index} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
         <td className="px-6 py-4">
           <div className="h-4 bg-gray-200 rounded dark:bg-gray-700 w-8 animate-pulse"></div>
         </td>
