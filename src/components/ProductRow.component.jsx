@@ -4,7 +4,7 @@ import api from "../api/Api";
 import { useSWRConfig } from "swr";
 import { lineSpinner } from "ldrs";
 import toast from "react-hot-toast";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 lineSpinner.register();
 
@@ -35,7 +35,7 @@ const ProductRowComponent = ({
     });
     mutate(api + "/products");
     setDeleteLoading(false);
-    toast.success("Product Delete Successfully")
+    toast.success("Product delete successfully")
   };
 
   const deleteRowBtn = () => {

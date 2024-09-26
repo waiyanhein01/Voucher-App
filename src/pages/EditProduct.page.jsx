@@ -1,14 +1,18 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
-import ContainerComponent from '../components/Container.component'
+import React from "react";
+import ContainerComponent from "../components/Container.component";
+import BreadcrumbComponent from "../components/Breadcrumb.component";
+import EditProductCardComponent from "../components/EditProductCard.component";
 
 const EditProductPage = () => {
-  const {id} = useParams()
   return (
     <ContainerComponent>
-      EditProductPage
+      <BreadcrumbComponent
+        currentPage={"Edit Product"}
+        links={[{ title: "Product Module", path: "/product" }]}
+      />
+      <EditProductCardComponent/>
     </ContainerComponent>
-  )
-}
+  );
+};
 
-export default EditProductPage
+export default EditProductPage;
