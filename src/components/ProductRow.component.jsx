@@ -3,6 +3,8 @@ import { HiOutlinePencil, HiOutlineTrash } from "react-icons/hi2";
 import api from "../api/Api";
 import { useSWRConfig } from "swr";
 import { lineSpinner } from "ldrs";
+import toast from "react-hot-toast";
+import { Link, useParams } from "react-router-dom";
 
 lineSpinner.register();
 
@@ -33,6 +35,7 @@ const ProductRowComponent = ({
     });
     mutate(api + "/products");
     setDeleteLoading(false);
+    toast.success("Product Delete Successfully")
   };
 
   const deleteRowBtn = () => {
@@ -55,12 +58,13 @@ const ProductRowComponent = ({
         </td>
         <td className="px-6 py-4 text-end">
           <div className="inline-flex rounded-md shadow-sm">
-            <button
+            <Link
+            to={`edit/${id}`}
               aria-current="page"
               className="w-10 h-8 flex justify-center items-center text-sm font-medium text-stone-600 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 focus:z-10 focus:ring-2 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
             >
               <HiOutlinePencil className=" pointer-events-none" />
-            </button>
+            </Link>
 
             <button
               onClick={deleteRowBtn}

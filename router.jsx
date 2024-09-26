@@ -3,6 +3,7 @@ import {
   AboutPage,
   CreateProductPage,
   DashBoardPage,
+  EditProductPage,
   NotFoundPage,
   ProductPage,
   SalePage,
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/product/create",
         element: <CreateProductPage />,
+      },
+      {
+        path: "/product/edit/:id",
+        element: <EditProductPage />,
       },
       {
         path: "/sale",

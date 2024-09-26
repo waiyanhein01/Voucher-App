@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import api from "../api/Api";
 import { tailspin } from "ldrs";
 import { useSWRConfig } from "swr";
+import toast from "react-hot-toast";
 
 const CreateProductPage = () => {
   tailspin.register();
@@ -38,6 +39,7 @@ const CreateProductPage = () => {
     });
     mutate(api + "/products");
     setIsSending(false);
+    toast.success("Create Product Successfully")
     if(data.after_save){
       nav("/product")
     }
@@ -136,7 +138,7 @@ const CreateProductPage = () => {
               type="submit"
               className="text-white inline-flex gap-2 bg-emerald-500 hover:bg-emerald-600 focus:ring-1 focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
             >
-              <span>Save Product</span>
+              <span>Create Product</span>
               {isSending && (
                 <l-tailspin
                   size="20"
