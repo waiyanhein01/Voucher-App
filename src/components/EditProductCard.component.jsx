@@ -27,7 +27,6 @@ const EditProductCardComponent = () => {
   const nav = useNavigate();
 
   const createFormHandle = async (data) => {
-    // console.log(data);
     setIsUpdating(true);
     await fetch(api + `/products/${id}`, {
       method: "PUT",
@@ -106,8 +105,8 @@ const EditProductCardComponent = () => {
               className={`bg-gray-50 border outline-none text-gray-900 text-sm rounded-lg ${
                 errors.product_name
                   ? "focus:ring-red-500 border-red-500 focus:border-red-500"
-                  : "focus:ring-emerald-500 border-gray-300 focus:border-emerald-500"
-              } block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-emerald-500 dark:focus:border-emerald-500`}
+                  : "focus:ring-cyan-700 border-gray-300 focus:border-cyan-800"
+              } block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500`}
               placeholder="eg.apple"
             />
             {errors.product_name && (
@@ -134,8 +133,8 @@ const EditProductCardComponent = () => {
               className={`bg-gray-50 border outline-none text-gray-900 text-sm rounded-lg ${
                 errors.price
                   ? "focus:ring-red-500 border-red-500 focus:border-red-500"
-                  : "focus:ring-emerald-500 border-gray-300 focus:border-emerald-500"
-              } block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-emerald-500 dark:focus:border-emerald-500`}
+                  : "focus:ring-cyan-700 border-gray-300 focus:border-cyan-800"
+              } block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-700 dark:focus:border-cyan-800`}
               placeholder="eg.500"
             />
             {errors.price && (
@@ -152,7 +151,7 @@ const EditProductCardComponent = () => {
               type="checkbox"
               defaultValue
               required
-              className="w-4 h-4 text-emerald-600 bg-gray-100 border-gray-300 rounded focus:ring-emerald-500 dark:focus:ring-emerald-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+              className="w-4 h-4 text-cyan-700 bg-gray-100 border-gray-300 rounded focus:ring-cyan-500 dark:focus:ring-cyan-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
             />
             <label
               htmlFor="all_correct"
@@ -169,7 +168,7 @@ const EditProductCardComponent = () => {
               id="after_save"
               type="checkbox"
               defaultValue
-              className="w-4 h-4 text-emerald-600 bg-gray-100 border-gray-300 rounded focus:ring-emerald-500 dark:focus:ring-emerald-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+              className="w-4 h-4 text-cyan-600 bg-gray-100 border-gray-300 rounded focus:ring-cyan-500 dark:focus:ring-cyan-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
             />
             <label
               htmlFor="after_save"
@@ -182,14 +181,14 @@ const EditProductCardComponent = () => {
           <div className=" mt-3">
             <Link
               to={"/product"}
-              className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-emerald-500 focus:z-10 focus:ring-1 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-cyan-500 focus:z-10 focus:ring-1 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             >
               Cancel
             </Link>
 
             <button
               type="submit"
-              className="text-white inline-flex gap-2 bg-emerald-500 hover:bg-emerald-600 focus:ring-1 focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+              className="text-white inline-flex gap-2 bg-cyan-500 hover:bg-cyan-600 focus:ring-1 focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
             >
               <span>Update Product</span>
               {isUpdating && (

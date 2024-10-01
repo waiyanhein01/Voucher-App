@@ -63,7 +63,7 @@ const CreateProductCardComponent = () => {
               {...register("product_name",{required: true, minLength: 3, maxLength:50})}
               type="text"
               id="product_name"
-              className={`bg-gray-50 border outline-none text-gray-900 text-sm rounded-lg ${errors.product_name ?"focus:ring-red-500 border-red-500 focus:border-red-500":"focus:ring-emerald-500 border-gray-300 focus:border-emerald-500"} block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-emerald-500 dark:focus:border-emerald-500`}
+              className={`bg-gray-50 border outline-none text-gray-900 text-sm rounded-lg ${errors.product_name ?"focus:ring-red-500 border-red-500 focus:border-red-500":"focus:ring-cyan-700 border-gray-300 focus:border-cyan-800"} block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-700 dark:focus:border-cyan-800`}
               placeholder="eg.apple"
             />
             {errors.product_name && <span className=" text-red-500 text-xs">Product name must have minimum 3 letters</span> }
@@ -80,7 +80,7 @@ const CreateProductCardComponent = () => {
               {...register("price",{required: true, min: 100, max: 20000})}
               type="number"
               id="price"
-              className={`bg-gray-50 border outline-none text-gray-900 text-sm rounded-lg ${errors.price ?"focus:ring-red-500 border-red-500 focus:border-red-500":"focus:ring-emerald-500 border-gray-300 focus:border-emerald-500"} block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-emerald-500 dark:focus:border-emerald-500`}
+              className={`bg-gray-50 border outline-none text-gray-900 text-sm rounded-lg ${errors.price ?"focus:ring-red-500 border-red-500 focus:border-red-500":"focus:ring-cyan-700 border-gray-300 focus:border-cyan-800"} block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-700 dark:focus:border-cyan-800`}
               placeholder="eg.500"
             />
             {errors.price && <span className="text-red-500 text-xs">Product price must have minimum 100</span> }
@@ -93,7 +93,7 @@ const CreateProductCardComponent = () => {
               type="checkbox"
               defaultValue
               required
-              className="w-4 h-4 text-emerald-600 bg-gray-100 border-gray-300 rounded focus:ring-emerald-500 dark:focus:ring-emerald-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+              className="w-4 h-4 text-cyan-700 bg-gray-100 border-gray-300 rounded focus:ring-cyan-600 dark:focus:ring-cyan-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
             />
             <label
               htmlFor="all_correct"
@@ -109,7 +109,7 @@ const CreateProductCardComponent = () => {
               id="after_save"
               type="checkbox"
               defaultValue
-              className="w-4 h-4 text-emerald-600 bg-gray-100 border-gray-300 rounded focus:ring-emerald-500 dark:focus:ring-emerald-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+              className="w-4 h-4 text-cyan-700 bg-gray-100 border-gray-300 rounded focus:ring-cyan-600 dark:focus:ring-cyan-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
             />
             <label
               htmlFor="after_save"
@@ -122,14 +122,14 @@ const CreateProductCardComponent = () => {
           <div className=" mt-3">
             <Link
               to={"/product"}
-              className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-emerald-500 focus:z-10 focus:ring-1 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-cyan-800 focus:z-10 focus:ring-1 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             >
               Cancel
             </Link>
 
             <button
               type="submit"
-              className="text-white inline-flex gap-2 bg-emerald-500 hover:bg-emerald-600 focus:ring-1 focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+              className="text-white inline-flex gap-2 bg-cyan-700 hover:bg-cyan-800 focus:ring-1 focus:ring-cyan-600 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
             >
               <span>Create Product</span>
               {isSending && (
