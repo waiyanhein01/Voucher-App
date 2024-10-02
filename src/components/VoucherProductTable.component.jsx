@@ -1,6 +1,11 @@
 import React from "react";
+import useRecordStore from "../store/useRecordStore";
+import VoucherTableRowComponent from "./VoucherTableRow.component";
 
 const VoucherProductTableComponent = () => {
+  const { records } = useRecordStore();
+
+  // const {product:{price,product_name,id},cost,quantity} = records
   return (
     <div className="overflow-x-auto">
       <div data-testid="table-element" className="relative">
@@ -8,6 +13,7 @@ const VoucherProductTableComponent = () => {
         <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
           <thead className="group/head text-xs uppercase text-gray-700 dark:text-gray-400">
             <tr>
+              <th className="bg-gray-50 px-6 py-3 group-first/head:first:rounded-tl-lg group-first/head:last:rounded-tr-lg dark:bg-gray-700"></th>
               <th className="bg-gray-50 px-6 py-3 group-first/head:first:rounded-tl-lg group-first/head:last:rounded-tr-lg dark:bg-gray-700">
                 Product name
               </th>
@@ -26,18 +32,45 @@ const VoucherProductTableComponent = () => {
             </tr>
           </thead>
           <tbody className="group/body divide-y">
+            {records.length === 0 ? (
+              <tr
+                data-testid="table-row-element"
+                className="group/row odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700"
+              >
+                <td
+                  className="px-6 py-4 group-first/body:group-first/row:first:rounded-tl-lg group-first/body:group-first/row:last:rounded-tr-lg group-last/body:group-last/row:first:rounded-bl-lg group-last/body:group-last/row:last:rounded-br-lg whitespace-nowrap text-center font-medium text-gray-900 dark:text-white"
+                  colSpan={6}
+                >
+                  There is no record.
+                </td>
+              </tr>
+            ) : (
+              records.map((record, index) => (
+                <VoucherTableRowComponent
+                  key={record.id}
+                  record={record}
+                  index={index}
+                />
+              ))
+            )}
+          </tbody>
+          <tfoot className="group/foot uppercase text-gray-700 dark:text-gray-400">
             <tr
               data-testid="table-row-element"
               className="group/row odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700"
             >
               <td
-                className="px-6 py-4 group-first/body:group-first/row:first:rounded-tl-lg group-first/body:group-first/row:last:rounded-tr-lg group-last/body:group-last/row:first:rounded-bl-lg group-last/body:group-last/row:last:rounded-br-lg whitespace-nowrap text-center font-medium text-gray-900 dark:text-white"
-                colSpan={5}
+                className="px-6 py-4 font-bold group-first/body:group-first/row:first:rounded-tl-lg group-first/body:group-first/row:last:rounded-tr-lg group-last/body:group-last/row:first:rounded-bl-lg group-last/body:group-last/row:last:rounded-br-lg text-center"
+                colSpan={4}
               >
-                There is no record.
+                Net Total
               </td>
+              <td className="px-6 py-4 group-first/body:group-first/row:first:rounded-tl-lg group-first/body:group-first/row:last:rounded-tr-lg group-last/body:group-last/row:first:rounded-bl-lg group-last/body:group-last/row:last:rounded-br-lg text-end">
+                $13.93
+              </td>
+              <td className="px-6 py-4 group-first/body:group-first/row:first:rounded-tl-lg group-first/body:group-first/row:last:rounded-tr-lg group-last/body:group-last/row:first:rounded-bl-lg group-last/body:group-last/row:last:rounded-br-lg" />
             </tr>
-          </tbody>
+          </tfoot>
         </table>
       </div>
     </div>

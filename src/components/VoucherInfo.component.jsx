@@ -35,12 +35,11 @@ const VoucherInfoComponent = () => {
     <div>
       <h1 className=" text-xl font-bold mb-3">Voucher</h1>
       <form
-        className="mb-5"
+        className="mb-5 shadow rounded-lg p-4 grid grid-cols-4 gap-3"
         onSubmit={handleSubmit(createVoucherHandle)}
         id="formInfo"
       >
-        <div className=" flex justify-between items-center gap-5">
-          <div>
+        <div className="md:col-span-1 col-span-4">
             <label
               htmlFor="voucher_id"
               className={`block mb-1 text-sm font-medium ${
@@ -70,7 +69,7 @@ const VoucherInfoComponent = () => {
             )}
           </div>
 
-          <div>
+          <div className="md:col-span-1 col-span-4">
             <label
               htmlFor="customer_name"
               className={`block mb-1 text-sm font-medium ${
@@ -99,7 +98,7 @@ const VoucherInfoComponent = () => {
             )}
           </div>
 
-          <div>
+          <div className="md:col-span-1 col-span-4">
             <label
               htmlFor="customer_email"
               className={`block mb-1 text-sm font-medium ${
@@ -128,7 +127,7 @@ const VoucherInfoComponent = () => {
             )}
           </div>
 
-          <div>
+          <div className="md:col-span-1 col-span-4">
             <label
               htmlFor="date"
               className={`block mb-1 text-sm font-medium ${
@@ -155,15 +154,32 @@ const VoucherInfoComponent = () => {
               <span className=" text-red-500 text-xs">Date is required</span>
             )}
           </div>
-        </div>
       </form>
 
-      <div className=" border border-gray-200 rounded-lg p-3 mb-5">
+      <div className=" shadow rounded-lg p-4 mb-5">
         <VoucherProductFormComponent />
         <VoucherProductTableComponent />
       </div>
 
-      <div className=" flex justify-end items-center gap-2">
+      <div className="md:flex md:justify-between md:items-center gap-2">
+        <div className="">
+        <button
+          form="formInfo"
+          type="submit"
+          className="text-white inline-flex gap-2 bg-cyan-700 hover:bg-cyan-800 focus:ring-1 focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+        >
+          <span>Confirm Voucher</span>
+          {isSending && (
+            <l-tailspin
+              size="20"
+              stroke="2"
+              speed="0.9"
+              color="white"
+            ></l-tailspin>
+          )}
+        </button>
+        </div>
+
         <div className="flex items-center">
           <input
             {...register("all_correct")}
@@ -181,22 +197,6 @@ const VoucherInfoComponent = () => {
             Make sure all fields are correct!
           </label>
         </div>
-
-        <button
-          form="formInfo"
-          type="submit"
-          className="text-white inline-flex gap-2 bg-cyan-700 hover:bg-cyan-800 focus:ring-1 focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
-        >
-          <span>Confirm Voucher</span>
-          {isSending && (
-            <l-tailspin
-              size="20"
-              stroke="2"
-              speed="0.9"
-              color="white"
-            ></l-tailspin>
-          )}
-        </button>
       </div>
     </div>
   );
