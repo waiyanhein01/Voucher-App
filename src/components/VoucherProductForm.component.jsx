@@ -13,20 +13,27 @@ const VoucherProductFormComponent = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm();
 
-  const {addRecord} = useRecordStore()
-
+  const { addRecord, records, changeQuantity } = useRecordStore();
   const productFormHandle = (data) => {
-    const currentProduct = JSON.parse(data.product)
-    addRecord({
-      id: Date.now(),
-      product: currentProduct,
-      quantity: data.quantity,
-      cost : data.quantity * currentProduct.price,
-      created_at: new Date().toISOString(),
-    })
+    const currentProduct = JSON.parse(data.product);
+
+    const isExited = records.find(
+      (record) => record.product.id === currentProduct.id
+    );
+    if (isExited) {
+      changeQuantity(isExited.id, data.quantity);
+    } else {
+      addRecord({
+        id: Date.now(),
+        product: currentProduct,
+        quantity: data.quantity,
+        cost: data.quantity * currentProduct.price,
+        created_at: new Date().toISOString(),
+      });
+    }
     reset();
   };
   return (
@@ -48,16 +55,15 @@ const VoucherProductFormComponent = () => {
                 <select
                   {...register("product", { required: true })}
                   className="block outline-none w-full border disabled:cursor-not-allowed disabled:opacity-50 border-gray-300 bg-gray-50 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 p-2.5 text-sm rounded-lg"
-                  id="products"
+                  id="product"
                   required
                 >
-                  {!isLoading && (
+                  {!isLoading &&
                     data?.map((product) => (
                       <option key={product.id} value={JSON.stringify(product)}>
                         {product.product_name}
                       </option>
-                    ))
-                  )}
+                    ))}
                 </select>
               </div>
             </div>
@@ -96,13 +102,10 @@ const VoucherProductFormComponent = () => {
           </div>
           <div className=" col-span-5 md:col-span-1">
             <button
-              {...register("submit")}
               type="submit"
               className="group relative p-0.5 text-center font-medium transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow] focus:z-10 focus:outline-none border border-transparent bg-cyan-700 text-white focus:ring-4 focus:ring-cyan-300 enabled:hover:bg-cyan-800 dark:bg-cyan-600 dark:focus:ring-cyan-800 dark:enabled:hover:bg-cyan-700 rounded-lg w-full h-full flex justify-center items-center"
             >
-              <span className="flex items-stretch transition-all duration-200 pointer-events-none rounded-md px-4 py-2 text-sm">
-                Add Product
-              </span>
+              Add Product
             </button>
           </div>
         </div>

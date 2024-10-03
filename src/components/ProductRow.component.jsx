@@ -5,6 +5,7 @@ import { useSWRConfig } from "swr";
 import { lineSpinner } from "ldrs";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import ShowDateComponent from "./ShowDate.component";
 
 lineSpinner.register();
 
@@ -14,19 +15,6 @@ const ProductRowComponent = ({
   const [deleteLoading, setDeleteLoading] = useState(false);
 
   const { mutate } = useSWRConfig();
-  const date = new Date(created_at);
-  const currentDay = date.toLocaleDateString("en-US", {
-    // weekday: "long",
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-
-  const currentTime = date.toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "numeric",
-    hour12: true,
-  });
 
   const deleteApi = async (id) => {
     setDeleteLoading(true);
@@ -52,9 +40,8 @@ const ProductRowComponent = ({
           {product_name}
         </td>
         <td className="px-6 py-4 text-end">{price}</td>
-        <td className=" flex flex-col py-2 items-end justify-center text-stone-400">
-          <span className="px-6 text-end">{currentTime}</span>
-          <span className="px-6 text-end">{currentDay}</span>
+        <td className="text-xs px-6 py-4 text-end">
+          <ShowDateComponent timestamp={created_at} />
         </td>
         <td className="px-6 py-4 text-end">
           <div className="inline-flex rounded-md shadow-sm">

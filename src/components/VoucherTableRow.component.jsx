@@ -1,6 +1,46 @@
 import React from "react";
+import useRecordStore from "../store/useRecordStore";
+import Swal from "sweetalert2";
 
-const VoucherTableRowComponent = ({record:{id,cost,quantity,product:{product_name,price}},index}) => {
+const VoucherTableRowComponent = ({
+  record: {
+    id,
+    cost,
+    quantity,
+    product: { product_name, price },
+  },
+  index,
+}) => {
+  const { removeRecord,changeQuantity } = useRecordStore();
+  const deleteBtnHandle = () => {
+    Swal.fire({
+      title: "Are you sure to delete?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#0e7490",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Delete",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        removeRecord(id);
+        Swal.fire({
+          confirmButtonColor: "#0e7490",
+          title: "Deleted!",
+          text: "Your product has been deleted.",
+          icon: "success"
+        });
+      }
+    });
+  };
+
+  const quantityIncreaseHandle = () => {
+    changeQuantity(id, 1);
+  };
+
+  const quantityDecreaseHandle = () => {
+    quantity > 1 && changeQuantity(id, -1);
+  };
   return (
     <>
       <tr
@@ -8,7 +48,7 @@ const VoucherTableRowComponent = ({record:{id,cost,quantity,product:{product_nam
         className="group/row odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 bg-white dark:border-gray-700 dark:bg-gray-800"
       >
         <td className="px-6 py-4 group-first/body:group-first/row:first:rounded-tl-lg group-first/body:group-first/row:last:rounded-tr-lg group-last/body:group-last/row:first:rounded-bl-lg group-last/body:group-last/row:last:rounded-br-lg whitespace-nowrap font-medium text-gray-900 dark:text-white">
-          {index+1}
+          {index + 1}
         </td>
         <td className="px-6 py-4 group-first/body:group-first/row:first:rounded-tl-lg group-first/body:group-first/row:last:rounded-tr-lg group-last/body:group-last/row:first:rounded-bl-lg group-last/body:group-last/row:last:rounded-br-lg whitespace-nowrap font-medium text-gray-900 dark:text-white">
           {product_name}
@@ -19,31 +59,32 @@ const VoucherTableRowComponent = ({record:{id,cost,quantity,product:{product_nam
         <td className="px-6 py-4 group-first/body:group-first/row:first:rounded-tl-lg group-first/body:group-first/row:last:rounded-tr-lg group-last/body:group-last/row:first:rounded-bl-lg group-last/body:group-last/row:last:rounded-br-lg text-end">
           <div className=" flex justify-end gap-2 items-center">
             <button
+            onClick={quantityDecreaseHandle}
               type="button"
               className="group relative flex items-stretch justify-center p-0.5 text-center font-medium transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow] focus:z-10 focus:outline-none :ring-cyan-700 border border-gray-200 bg-white text-gray-900 focus:text-cyan-700 focus:ring-4 enabled:hover:bg-gray-100 enabled:hover:text-cyan-700 dark:border-gray-600 dark:bg-transparent dark:text-gray-400 dark:enabled:hover:bg-gray-700 dark:enabled:hover:text-white rounded-lg print:hidden"
             >
               <span className="flex items-stretch transition-all duration-200 rounded-md px-2 py-1 text-xs">
-                {" "}
                 -
               </span>
             </button>
             <span>{quantity}</span>
             <button
+            onClick={quantityIncreaseHandle}
               type="button"
               className="group relative flex items-stretch justify-center p-0.5 text-center font-medium transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow] focus:z-10 focus:outline-none :ring-cyan-700 border border-gray-200 bg-white text-gray-900 focus:text-cyan-700 focus:ring-4 enabled:hover:bg-gray-100 enabled:hover:text-cyan-700 dark:border-gray-600 dark:bg-transparent dark:text-gray-400 dark:enabled:hover:bg-gray-700 dark:enabled:hover:text-white rounded-lg print:hidden"
             >
               <span className="flex items-stretch transition-all duration-200 rounded-md px-2 py-1 text-xs">
-                {" "}
                 +
               </span>
             </button>
           </div>
         </td>
         <td className="px-6 py-4 group-first/body:group-first/row:first:rounded-tl-lg group-first/body:group-first/row:last:rounded-tr-lg group-last/body:group-last/row:first:rounded-bl-lg group-last/body:group-last/row:last:rounded-br-lg text-end">
-          $ {cost}
+          {cost}
         </td>
         <td className="px-6 py-4 group-first/body:group-first/row:first:rounded-tl-lg group-first/body:group-first/row:last:rounded-tr-lg group-last/body:group-last/row:first:rounded-bl-lg group-last/body:group-last/row:last:rounded-br-lg">
           <button
+            onClick={deleteBtnHandle}
             type="button"
             className="group relative flex items-stretch justify-center p-0.5 text-center transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow] focus:z-10 focus:outline-none rounded-lg font-medium text-cyan-600 hover:underline dark:text-cyan-500 print:hidden"
           >
