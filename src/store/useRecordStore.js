@@ -24,7 +24,7 @@ const useRecordStore = create((set) => ({
       }),
     })),
 
-    resetRecord : () => set((state) => ({ records: [] })),
+    resetRecord : () => set(() => ({ records: [] })),
 }));
 
 export default useRecordStore;
