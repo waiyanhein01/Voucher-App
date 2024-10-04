@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { tailspin } from "ldrs";
-import VoucherProductFormComponent from "./VoucherProductForm.component";
-import VoucherProductTableComponent from "./VoucherProductTable.component";
+import VoucherProductFormComponent from "./SaleProductForm.component";
+import VoucherProductTableComponent from "./SaleProductTable.component";
 import useRecordStore from "../store/useRecordStore";
 import api from "../api/Api";
 import { useNavigate } from "react-router-dom";

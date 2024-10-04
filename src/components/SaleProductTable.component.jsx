@@ -1,8 +1,8 @@
 import React from "react";
 import useRecordStore from "../store/useRecordStore";
-import VoucherTableRowComponent from "./VoucherTableRow.component";
+import SaleTableRowComponent from "./SaleTableRow.component";
 
-const VoucherProductTableComponent = () => {
+const SaleProductTableComponent = () => {
   const { records } = useRecordStore();
 
   const total = records.reduce((pv, cv) => {
@@ -54,7 +54,7 @@ const VoucherProductTableComponent = () => {
               </tr>
             ) : (
               records.map((record, index) => (
-                <VoucherTableRowComponent
+                <SaleTableRowComponent
                   key={record.id}
                   record={record}
                   index={index}
@@ -117,4 +117,4 @@ const VoucherProductTableComponent = () => {
   );
 };
 
-export default VoucherProductTableComponent;
+export default SaleProductTableComponent;

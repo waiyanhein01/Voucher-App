@@ -6,7 +6,7 @@ import useRecordStore from "../store/useRecordStore";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-const VoucherProductFormComponent = () => {
+const SaleProductFormComponent = () => {
   const { data, isLoading, error } = useSWR(api + "/products", fetcher);
 
   const {
@@ -114,4 +114,4 @@ const VoucherProductFormComponent = () => {
   );
 };
 
-export default VoucherProductFormComponent;
+export default SaleProductFormComponent;

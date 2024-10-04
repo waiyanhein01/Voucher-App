@@ -2,7 +2,7 @@ import React from "react";
 import useRecordStore from "../store/useRecordStore";
 import Swal from "sweetalert2";
 
-const VoucherTableRowComponent = ({
+const SaleTableRowComponent = ({
   record: {
     id,
     cost,
@@ -111,4 +111,4 @@ const VoucherTableRowComponent = ({
   );
 };
 
-export default VoucherTableRowComponent;
+export default SaleTableRowComponent;

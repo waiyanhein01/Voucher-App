@@ -41,7 +41,7 @@ const ProductListsComponent = () => {
         </thead>
         <tbody>
           {isLoading ? (
-            <ProductSkeletonComponent />
+            <ProductSkeletonComponent colSpan={5} />
           ) : data.length === 0 ? (
             <ProductEmptyRowComponent />
           ) : (
