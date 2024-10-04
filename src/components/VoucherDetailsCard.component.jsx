@@ -8,7 +8,6 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 const VoucherDetailsCardComponent = () => {
   const { id } = useParams();
   const { data, isLoading, error } = useSWR(api + "/vouchers/" + id, fetcher);
-  console.log(data);
   return (
     <div className="max-w-2xl mx-auto bg-white p-3 shadow">
       {isLoading ? (
@@ -31,34 +30,42 @@ const VoucherDetailsCardComponent = () => {
             <thead className="">
               <tr>
                 <th className="text-left py-2 px-4">No</th>
-                <th className="text-left py-2 px-4">PRODUCT</th>
-                <th className="text-right py-2 px-4">PRICE</th>
-                <th className="text-right py-2 px-4">QTY</th>
-                <th className="text-right py-2 px-4">TOTAL</th>
+                <th className="text-left py-2 px-4">Product</th>
+                <th className="text-right py-2 px-4">Price</th>
+                <th className="text-right py-2 px-4">Qty</th>
+                <th className="text-right py-2 px-4">Total</th>
               </tr>
             </thead>
             <tbody>
-              {/* {data.map((item, index) => (
-                  <tr key={item.id} className="border-b">
-                  <td className="py-2 px-4">{index+1}</td>
-                  <td className="py-2 px-4">name</td>
-                  <td className="text-right py-2 px-4">0.00</td>
-                  <td className="text-right py-2 px-4">0</td>
-                  <td className="text-right py-2 px-4">0.00</td>
+              {data.records.map((record, index) => (
+                <tr key={record.id} className="border-b">
+                  <td className="py-2 px-4">{index + 1}</td>
+                  <td className="py-2 px-4">{record.product.product_name}</td>
+                  <td className="text-right py-2 px-4">
+                    {record.product.price}
+                  </td>
+                  <td className="text-right py-2 px-4">{record.quantity}</td>
+                  <td className="text-right py-2 px-4">{record.cost}</td>
                 </tr>
-              ))} */}
+              ))}
             </tbody>
+
+            {/* <tfoot>
+                <tr>
+                    <td>Total <span>{data.total}</span></td>
+                </tr>
+            </tfoot> */}
           </table>
 
           <div className="flex justify-end mb-8">
             <div className="text-right">
               <p className="mb-2">
-                <span className="font-semibold">SUB TOTAL</span> 0.00
+                <span className="font-semibold me-5">Total</span> {data.total}
               </p>
               <p className="mb-2">
-                <span className="font-semibold">TAX</span> 0.00%
+                <span className="font-semibold me-5">Tax(5% MMK)</span> {data.tax}
               </p>
-              <p className="font-semibold">TOTAL 0.00</p>
+              <span className="font-semibold me-5">Net Total</span> {data.netTotal}
             </div>
           </div>
         </div>
