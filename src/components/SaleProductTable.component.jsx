@@ -74,7 +74,7 @@ const SaleProductTableComponent = () => {
                 Total
               </td>
               <td className="px-6 py-4 group-first/body:group-first/row:first:rounded-tl-lg group-first/body:group-first/row:last:rounded-tr-lg group-last/body:group-last/row:first:rounded-bl-lg group-last/body:group-last/row:last:rounded-br-lg text-end">
-                {total.toFixed(2)}
+                {total}
               </td>
               <td className="px-6 py-4 group-first/body:group-first/row:first:rounded-tl-lg group-first/body:group-first/row:last:rounded-tr-lg group-last/body:group-last/row:first:rounded-bl-lg group-last/body:group-last/row:last:rounded-br-lg" />
             </tr>
@@ -106,7 +106,7 @@ const SaleProductTableComponent = () => {
                 Net Total
               </td>
               <td className="px-6 py-4 font-bold group-first/body:group-first/row:first:rounded-tl-lg group-first/body:group-first/row:last:rounded-tr-lg group-last/body:group-last/row:first:rounded-bl-lg group-last/body:group-last/row:last:rounded-br-lg text-end">
-                {netTotal.toFixed(2)}
+                {netTotal}
               </td>
               <td className="px-6 py-4 group-first/body:group-first/row:first:rounded-tl-lg group-first/body:group-first/row:last:rounded-tr-lg group-last/body:group-last/row:first:rounded-bl-lg group-last/body:group-last/row:last:rounded-br-lg" />
             </tr>

@@ -34,8 +34,7 @@ const VoucherInfoComponent = () => {
     return voucherID;
   };
 
-
-  const nav = useNavigate()
+  const nav = useNavigate();
 
   const createVoucherHandle = async (data) => {
     setIsSending(true);
@@ -46,19 +45,24 @@ const VoucherInfoComponent = () => {
     const tax = total * 0.05;
 
     const netTotal = total + tax;
-    const currentData = ({ ...data, records, total, tax, netTotal });
-    await fetch(api + "/vouchers", {
+    const currentData = { ...data, records, total, tax, netTotal };
+    const res = await fetch(api + "/vouchers", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(currentData),
     });
-    setIsSending(false)
+
+    const response = await res.json();
+
+    setIsSending(false);
     toast.success("Create voucher successfully");
     resetRecord();
-    nav("/voucher")
     reset();
+    if (data.voucher_details) {
+      nav("/voucher/details/" + response.id);
+    }
   };
   return (
     <div>
@@ -158,19 +162,19 @@ const VoucherInfoComponent = () => {
 
         <div className="md:col-span-1 col-span-4">
           <label
-            htmlFor="date"
+            htmlFor="sale_date"
             className={`block mb-1 text-sm font-medium ${
-              errors.date ? "text-red-500" : "text-gray-900"
+              errors.sale_date ? "text-red-500" : "text-gray-900"
             } dark:text-white`}
           >
-            Date
+            Sale Date
           </label>
           <input
             {...register("sale_date", {
               required: true,
             })}
             defaultValue={new Date().toISOString().split("T")[0]}
-            type="date"
+            type="datetime-local"
             id="sale_date"
             className={`bg-gray-50 border outline-none text-gray-900 text-sm rounded-lg ${
               errors.sale_date
@@ -190,12 +194,49 @@ const VoucherInfoComponent = () => {
         <VoucherProductTableComponent />
       </div>
 
-      <div className="md:flex md:justify-between md:items-center gap-2">
+      <div className="flex justify-between items-center gap-3">
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center">
+            <label
+              htmlFor="voucher_details"
+              className="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300"
+            >
+              Redirect to Voucher Details.
+            </label>
+            <input
+              {...register("voucher_details")}
+              id="voucher_details"
+              type="checkbox"
+              form="formInfo"
+              defaultValue
+              className="w-4 h-4 text-cyan-700 bg-gray-100 border-gray-300 rounded focus:ring-cyan-600 dark:focus:ring-cyan-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+            />
+          </div>
+
+          <div className="flex items-center">
+            <label
+              htmlFor="all_correct"
+              className="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300"
+            >
+              Make sure all fields are correct!
+            </label>
+            <input
+              {...register("all_correct")}
+              id="all_correct"
+              type="checkbox"
+              form="formInfo"
+              defaultValue
+              required
+              className="w-4 h-4 text-cyan-700 bg-gray-100 border-gray-300 rounded focus:ring-cyan-600 dark:focus:ring-cyan-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+            />
+          </div>
+        </div>
+
         <div className="">
           <button
             form="formInfo"
             type="submit"
-            className="text-white inline-flex gap-2 bg-cyan-700 hover:bg-cyan-800 focus:ring-1 focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+            className="text-white inline-flex gap-2 bg-cyan-700 hover:bg-cyan-800 focus:ring-1 focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-5 me-2 mb-2"
           >
             <span>Confirm Voucher</span>
             {isSending && (
@@ -207,24 +248,6 @@ const VoucherInfoComponent = () => {
               ></l-tailspin>
             )}
           </button>
-        </div>
-
-        <div className="flex items-center">
-          <input
-            {...register("all_correct")}
-            id="all_correct"
-            type="checkbox"
-            form="formInfo"
-            defaultValue
-            required
-            className="w-4 h-4 text-cyan-700 bg-gray-100 border-gray-300 rounded focus:ring-cyan-600 dark:focus:ring-cyan-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
-          />
-          <label
-            htmlFor="all_correct"
-            className="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300"
-          >
-            Make sure all fields are correct!
-          </label>
         </div>
       </div>
     </div>

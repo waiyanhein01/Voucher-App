@@ -8,6 +8,7 @@ import {
   ProductPage,
   SalePage,
   VoucherPage,
+  VoucherDetailsPage,
 } from "./src/pages/page";
 import LayoutComponent from "./src/components/Layout.component";
 
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/voucher",
         element: <VoucherPage />,
+      },
+      {
+        path: "/voucher/details/:id",
+        element: <VoucherDetailsPage />,
       },
       {
         path: "/about",

@@ -61,5 +61,69 @@
       "created_at": "2024-03-05 13:10:00"
     }
   ],
-  "vouchers": []
+  "vouchers": [
+    {
+      "voucher_id": "H0HXW7KAIL",
+      "customer_name": "Wai Yan",
+      "customer_email": "waiyan@gmail.com",
+      "sale_date": "2024-10-04T21:45",
+      "all_correct": "true",
+      "records": [
+        {
+          "id": 1728054975518,
+          "product": {
+            "product_name": "Apple MacBook Pro 17\"",
+            "price": "2999",
+            "created_at": "2024-09-26T17:34:24.338Z",
+            "id": 1
+          },
+          "quantity": "3",
+          "cost": 8997,
+          "created_at": "2024-10-04T15:16:15.518Z"
+        },
+        {
+          "id": 1728054986820,
+          "product": {
+            "id": 3,
+            "product_name": "Asus ROG Strix",
+            "price": 1800,
+            "created_at": "2023-05-11 15:20:00"
+          },
+          "quantity": "3",
+          "cost": 5400,
+          "created_at": "2024-10-04T15:16:26.820Z"
+        }
+      ],
+      "total": 14397,
+      "tax": 719.85,
+      "netTotal": 15116.85,
+      "id": 2
+    },
+    {
+      "voucher_id": "TZGPIMQC0Q",
+      "customer_name": "kyaw",
+      "customer_email": "kyaw@gmail.com",
+      "sale_date": "2024-10-04T22:05",
+      "voucher_details": "true",
+      "all_correct": "true",
+      "records": [
+        {
+          "id": 1728056130439,
+          "product": {
+            "product_name": "Apple MacBook Pro 17\"",
+            "price": "2999",
+            "created_at": "2024-09-26T17:34:24.338Z",
+            "id": 1
+          },
+          "quantity": "3",
+          "cost": 8997,
+          "created_at": "2024-10-04T15:35:30.439Z"
+        }
+      ],
+      "total": 8997,
+      "tax": 449.85,
+      "netTotal": 9446.85,
+      "id": 3
+    }
+  ]
 }
