@@ -199,9 +199,9 @@ const VoucherInfoComponent = () => {
           <div className="flex items-center">
             <label
               htmlFor="voucher_details"
-              className="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300"
+              className="me-2 text-xs font-medium text-gray-900 dark:text-gray-300"
             >
-              Redirect to Voucher Details.
+              Redirect to voucher details.
             </label>
             <input
               {...register("voucher_details")}
@@ -216,7 +216,7 @@ const VoucherInfoComponent = () => {
           <div className="flex items-center">
             <label
               htmlFor="all_correct"
-              className="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300"
+              className="me-2 text-xs font-medium text-gray-900 dark:text-gray-300"
             >
               Make sure all fields are correct!
             </label>
