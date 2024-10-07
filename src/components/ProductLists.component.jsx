@@ -54,9 +54,9 @@ const ProductListsComponent = () => {
           </thead>
           <tbody>
             {isLoading ? (
-              <ProductSkeletonComponent colSpan={5} />
+              <ProductSkeletonComponent />
             ) : data.length === 0 ? (
-              <ProductEmptyRowComponent />
+              <ProductEmptyRowComponent colSpan={5} title={"There is no product."} />
             ) : (
               data.map((product) => (
                 <ProductRowComponent key={product.id} product={product} />

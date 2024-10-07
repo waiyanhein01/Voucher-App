@@ -17,7 +17,6 @@ const SaleProductTableComponent = () => {
   return (
     <div className="overflow-x-auto shadow rounded-lg">
       <div data-testid="table-element" className="relative">
-        <div className="absolute left-0 top-0 -z-10 h-full w-full rounded-lg bg-white drop-shadow-md dark:bg-black" />
         <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
           <thead className="group/head text-xs uppercase text-gray-700 dark:text-gray-400">
             <tr>

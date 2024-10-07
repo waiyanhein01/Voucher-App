@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import useSWR from "swr";
 import api from "../api/Api";
 import VoucherListRowComponent from "./VoucherListRow.component";
 import ProductEmptyRowComponent from "./ProductEmptyRow.component";
 import VoucherSkeletonComponent from "./VoucherSkeleton.component";
 import SearchCreateBtnComponent from "./SearchCreateBtn.component";
-import { HiMiniComputerDesktop } from "react-icons/hi2";
+import { HiMiniComputerDesktop, HiXMark } from "react-icons/hi2";
 import { debounce } from "lodash";
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
@@ -22,11 +22,11 @@ const VoucherListsComponent = () => {
   }, 500);
   return (
     <div className="">
-      <SearchCreateBtnComponent
+       <SearchCreateBtnComponent
         onChange={searchHandler}
         url={"/sale"}
         btnName={"Create New Voucher"}
-        placeholder={"Search vouchers"}
+        placeholder={"Search voucher(eg-ZS9D17M268)"}
         icon={<HiMiniComputerDesktop className=" size-5" />}
       />
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -60,7 +60,7 @@ const VoucherListsComponent = () => {
             {isLoading ? (
               <VoucherSkeletonComponent />
             ) : data.length === 0 ? (
-              <ProductEmptyRowComponent colSpan={7} />
+              <ProductEmptyRowComponent title={"There is no voucher."} colSpan={7} />
             ) : (
               data?.map((voucher, index) => (
                 <VoucherListRowComponent

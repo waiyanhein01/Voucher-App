@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { tailspin } from "ldrs";
-import VoucherProductFormComponent from "./SaleProductForm.component";
-import VoucherProductTableComponent from "./SaleProductTable.component";
+import SaleProductFormComponent from "./SaleProductForm.component";
+import SaleProductTableComponent from "./SaleProductTable.component";
 import useRecordStore from "../store/useRecordStore";
 import api from "../api/Api";
 import { useNavigate } from "react-router-dom";
@@ -68,14 +68,14 @@ const VoucherInfoComponent = () => {
     <div className="">
       <div className=" grid grid-cols-6 gap-3">
         <div className=" shadow rounded-lg p-4 md:col-span-4 col-span-6">
-          <h1 className=" text-xl font-bold mb-3">Products</h1>
-          <VoucherProductFormComponent />
-          <VoucherProductTableComponent />
+          <h1 className=" text-xl font-bold mb-3">Product</h1>
+          <SaleProductFormComponent />
+          <SaleProductTableComponent />
         </div>
 
         <div className=" md:col-span-2 col-span-6">
           <form
-            className="mb-5 shadow rounded-lg p-4 grid grid-cols-4 gap-3"
+            className="shadow rounded-lg p-4 grid grid-cols-4 gap-3"
             onSubmit={handleSubmit(createVoucherHandle)}
           >
             <h1 className=" text-xl font-bold mb-3">Voucher</h1>

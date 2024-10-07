@@ -1,5 +1,5 @@
 import React from "react";
-import { HiMagnifyingGlass } from "react-icons/hi2";
+import { HiMagnifyingGlass, HiXMark } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 
 const SearchCreateBtnComponent = ({placeholder,btnName,url,icon,className,onChange}) => {

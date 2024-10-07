@@ -18,8 +18,8 @@ const ProductSkeletonComponent = () => {
         >
           <div className="h-4 bg-gray-200 rounded dark:bg-gray-700 w-48 animate-pulse"></div>
         </td>
-        <td className="px-6 py-4 text-end">
-          <div className="h-4 bg-gray-200 rounded dark:bg-gray-700 w-16 animate-pulse"></div>
+        <td className="px-6 py-4">
+          <div className="h-4 bg-gray-200 rounded dark:bg-gray-700 w-16 animate-pulse">eee</div>
         </td>
         <td className="flex flex-col py-4 items-end justify-center gap-2 text-stone-400">
           <div className="px-6 text-end">
