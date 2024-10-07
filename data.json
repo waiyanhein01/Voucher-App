@@ -174,6 +174,80 @@
       "tax": 929.85,
       "netTotal": 19526.85,
       "id": 4
+    },
+    {
+      "voucher_id": "BNF00YU2NT",
+      "customer_name": "Aung Aung",
+      "customer_email": "aung@gmil.com",
+      "sale_date": "2024-10-07T18:53",
+      "voucher_details": "true",
+      "all_correct": "true",
+      "records": [
+        {
+          "id": 1728303777259,
+          "product": {
+            "product_name": "Apple MacBook Pro 17\"",
+            "price": "2999",
+            "created_at": "2024-09-26T17:34:24.338Z",
+            "id": 1
+          },
+          "quantity": "5",
+          "cost": 14995,
+          "created_at": "2024-10-07T12:22:57.259Z"
+        },
+        {
+          "id": 1728303782562,
+          "product": {
+            "product_name": "Dell XPS 12",
+            "price": "1300",
+            "created_at": "2024-09-26T17:50:15.631Z",
+            "id": 2
+          },
+          "quantity": "4",
+          "cost": 5200,
+          "created_at": "2024-10-07T12:23:02.562Z"
+        },
+        {
+          "id": 1728303791881,
+          "product": {
+            "id": 3,
+            "product_name": "Asus ROG Strix",
+            "price": 1800,
+            "created_at": "2023-05-11 15:20:00"
+          },
+          "quantity": "4",
+          "cost": 7200,
+          "created_at": "2024-10-07T12:23:11.881Z"
+        },
+        {
+          "id": 1728303797716,
+          "product": {
+            "id": 5,
+            "product_name": "HP Spectre x360",
+            "price": 1600,
+            "created_at": "2023-11-05 17:45:00"
+          },
+          "quantity": "4",
+          "cost": 6400,
+          "created_at": "2024-10-07T12:23:17.716Z"
+        },
+        {
+          "id": 1728303802902,
+          "product": {
+            "id": 6,
+            "product_name": "Microsoft Surface Laptop 4",
+            "price": 1900,
+            "created_at": "2023-12-19 08:40:00"
+          },
+          "quantity": "4",
+          "cost": 7600,
+          "created_at": "2024-10-07T12:23:22.902Z"
+        }
+      ],
+      "total": 41395,
+      "tax": 2069.75,
+      "netTotal": 43464.75,
+      "id": 5
     }
   ]
 }

@@ -128,8 +128,9 @@ const CreateProductCardComponent = () => {
             </Link>
 
             <button
+            disabled={isSending}
               type="submit"
-              className="text-white inline-flex gap-2 bg-cyan-700 hover:bg-cyan-800 focus:ring-1 focus:ring-cyan-600 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+              className="disabled:opacity-40 text-white inline-flex gap-2 bg-cyan-700 hover:bg-cyan-800 focus:ring-1 focus:ring-cyan-600 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
             >
               <span>Create Product</span>
               {isSending && (
