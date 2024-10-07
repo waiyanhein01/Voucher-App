@@ -59,7 +59,7 @@ const ProductRowComponent = ({
             >
               {deleteLoading ? (
                 <l-line-spinner
-                  size="10"
+                  size="20"
                   stroke="3"
                   speed="1"
                   color="red"

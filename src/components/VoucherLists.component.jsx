@@ -22,13 +22,24 @@ const VoucherListsComponent = () => {
   }, 500);
   return (
     <div className="">
-       <SearchCreateBtnComponent
+      <SearchCreateBtnComponent
         onChange={searchHandler}
         url={"/sale"}
         btnName={"Create New Voucher"}
         placeholder={"Search voucher(eg-ZS9D17M268)"}
         icon={<HiMiniComputerDesktop className=" size-5" />}
       />
+      <h1 className=" text-xl mb-2 font-semibold">
+        Voucher List Table( 
+        <span className=" text-cyan-700">
+          {isLoading ? (
+            <div className="h-4 bg-gray-200 inline-flex rounded-full dark:bg-gray-700 w-5 animate-pulse"></div>
+          ) : (
+            data.length
+          )}
+        </span>
+        )
+      </h1>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -60,7 +71,10 @@ const VoucherListsComponent = () => {
             {isLoading ? (
               <VoucherSkeletonComponent />
             ) : data.length === 0 ? (
-              <ProductEmptyRowComponent title={"There is no voucher."} colSpan={7} />
+              <ProductEmptyRowComponent
+                title={"There is no voucher."}
+                colSpan={7}
+              />
             ) : (
               data?.map((voucher, index) => (
                 <VoucherListRowComponent
