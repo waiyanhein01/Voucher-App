@@ -25,7 +25,7 @@ const ProductRowComponent = ({
     mutate(api + "/products");
     setDeleteLoading(false);
     if(res.status === 200){
-      toast.success(res.json.message);
+      toast.success(res.message);
     }
   };
 
