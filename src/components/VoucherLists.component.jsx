@@ -7,18 +7,24 @@ import VoucherSkeletonComponent from "./VoucherSkeleton.component";
 import SearchCreateBtnComponent from "./SearchCreateBtn.component";
 import { HiMiniComputerDesktop, HiXMark } from "react-icons/hi2";
 import { debounce } from "lodash";
+import PaginationComponents from "./Pagination.components";
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
 const VoucherListsComponent = () => {
+  const [fetchUrl, setFetchUrl] = useState(api + "/vouchers");
   const { data, isLoading, error } = useSWR(
-    `${api}/vouchers`,
+    fetchUrl,
     fetcher
   );
 
   const searchHandler = debounce((e) => {
+    setFetchUrl(api + "/vouchers?q=" + e.target.value);
   }, 500);
 
+  const fetchUrlHandler = (url) => {
+    setFetchUrl(url);
+  }
   return (
     <div className="">
       <SearchCreateBtnComponent
@@ -29,7 +35,8 @@ const VoucherListsComponent = () => {
         icon={<HiMiniComputerDesktop className=" size-5" />}
       />
       <h1 className=" text-xl mb-2 font-semibold">
-        Voucher List Table( 
+        Voucher List Table
+        {/* ( 
         <span className=" text-cyan-700">
           {isLoading ? (
             <div className="h-4 bg-gray-200 inline-flex rounded-full dark:bg-gray-700 w-5 animate-pulse"></div>
@@ -37,7 +44,7 @@ const VoucherListsComponent = () => {
             data.data.length
           )}
         </span>
-        )
+        ) */}
       </h1>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -86,6 +93,9 @@ const VoucherListsComponent = () => {
           </tbody>
         </table>
       </div>
+      {!isLoading && (
+        <PaginationComponents links={data.links} meta={data.meta} fetchUrlHandler={fetchUrlHandler} />
+      )}
     </div>
   );
 };

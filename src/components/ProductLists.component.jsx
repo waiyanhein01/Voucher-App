@@ -7,16 +7,21 @@ import api from "../api/Api";
 import SearchCreateBtnComponent from "./SearchCreateBtn.component";
 import { HiMiniPlus } from "react-icons/hi2";
 import { debounce } from "lodash";
+import PaginationComponents from "./Pagination.components";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const ProductListsComponent = () => {
-  const { data, isLoading, error } = useSWR(`${api}/products`, fetcher);
-
+  const [fetchUrl, setFetchUrl] = useState(api + "/products");
+  const { data, isLoading, error } = useSWR(fetchUrl, fetcher);
   const searchHandler = debounce((e) => {
-    // setSearch(e.target.value);
+    setFetchUrl(api + "/products?q=" + e.target.value);
   }, 500);
 
+  const fetchUrlHandler = (url) => {
+    setFetchUrl(url);
+  };
+  
   return (
     <div className="">
       <SearchCreateBtnComponent
@@ -28,7 +33,8 @@ const ProductListsComponent = () => {
       />
 
       <h1 className=" text-xl mb-2 font-semibold">
-        Product List Table (
+        Product List Table 
+        {/* (
         <span className=" text-cyan-700">
           {isLoading ? (
             <div className="h-4 bg-gray-200 inline-flex rounded-full dark:bg-gray-700 w-5 animate-pulse"></div>
@@ -36,7 +42,7 @@ const ProductListsComponent = () => {
             data.data.length
           )}
         </span>
-        )
+        ) */}
       </h1>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -75,6 +81,8 @@ const ProductListsComponent = () => {
           </tbody>
         </table>
       </div>
+      
+      {!isLoading && <PaginationComponents links={data.links} meta={data.meta} fetchUrlHandler={fetchUrlHandler} />}
     </div>
   );
 };

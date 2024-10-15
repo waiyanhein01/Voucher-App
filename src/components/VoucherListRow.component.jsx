@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { HiOutlineTrash } from "react-icons/hi2";
 import ShowDateComponent from "./ShowDate.component";
-import useSWR, { useSWRConfig } from "swr";
+import { useSWRConfig } from "swr";
 import api from "../api/Api";
 import toast from "react-hot-toast";
 import { lineSpinner } from "ldrs";
@@ -16,25 +16,26 @@ const VoucherListRowComponent = ({
     customer_email,
     voucher_id,
     sale_date,
-    netTotal,
+    net_total,
   },
   index,
 }) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const { mutate } = useSWRConfig();
 
-  
   const deleteVoucherRowHandler = async () => {
     setIsDeleting(true);
-    const res=await fetch(api + "/vouchers/" + id, {
+    const res = await fetch(api + "/vouchers/" + id, {
       method: "DELETE",
     });
-    console.log(res)
+    console.log(res);
     mutate(api + "/vouchers");
     setIsDeleting(false);
- 
-    if(res.status === 200){
-      toast.success(res.json.message);
+
+    const resJson = await res.json();
+
+    if (res.status === 200) {
+      toast.success(resJson.message);
     }
   };
 
@@ -58,9 +59,9 @@ const VoucherListRowComponent = ({
         <td className="px-6 py-4">{customer_email}</td>
         <td className="px-6 py-4 text-right text-nowrap">{voucher_id}</td>
         <td className="px-6 py-4 text-right text-nowrap text-xs">
-          {/* {sale_date} */} <ShowDateComponent timestamp={sale_date} />
+          <ShowDateComponent timestamp={sale_date} />
         </td>
-        <td className="px-6 py-4 text-right text-nowrap">{netTotal} MMK</td>
+        <td className="px-6 py-4 text-right text-nowrap">{net_total} MMK</td>
         <td className="px-6 py-4 text-end">
           <div className="inline-flex rounded-md shadow-sm">
             <button

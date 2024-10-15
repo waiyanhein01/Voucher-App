@@ -27,8 +27,8 @@ const VoucherDetailsCardComponent = () => {
 
   const handleDownloadPdf = () => {
     const input = contentRef.current;
-    html2canvas(input,{
-      backgroundColor: '#ffffff',
+    html2canvas(input, {
+      backgroundColor: "#ffffff",
       useCORS: true,
       scale: 2,
     }).then((canvas) => {
@@ -41,6 +41,7 @@ const VoucherDetailsCardComponent = () => {
       pdf.save("invoice.pdf");
     });
   };
+
   return (
     <div className="">
       <div
@@ -55,12 +56,12 @@ const VoucherDetailsCardComponent = () => {
             <div className="flex justify-between items-start mb-8">
               <div>
                 <h1 className="text-4xl font-bold mb-2">INVOICE</h1>
-                <p className="text-md">#{data.voucher_id}</p>
+                <p className="text-md">#{data.data.voucher_id}</p>
               </div>
               <div className="text-right">
                 <p className="font-bold">Invoice to</p>
-                <p>{data.customer_name}</p>
-                <p>Date: {data.sale_date.slice(0, 10)}</p>
+                <p>{data.data.customer_name}</p>
+                <p>Date: {data.data.sale_date.slice(0, 10)}</p>
               </div>
             </div>
 
@@ -75,7 +76,7 @@ const VoucherDetailsCardComponent = () => {
                 </tr>
               </thead>
               <tbody>
-                {data.records.map((record, index) => (
+                {data.data.records.map((record, index) => (
                   <tr key={record.id} className="border-b border-gray-200">
                     <td className="py-2 text-sm">{index + 1}</td>
                     <td className="py-2 text-sm">
@@ -97,7 +98,7 @@ const VoucherDetailsCardComponent = () => {
                     Total
                   </td>
                   <td className="py-2 text-right text-sm">
-                    {data.total.toFixed(2)}
+                    {parseFloat(data.data.total).toFixed(2)}
                   </td>
                 </tr>
                 <tr className="border-b border-gray-200">
@@ -105,7 +106,7 @@ const VoucherDetailsCardComponent = () => {
                     Tax(5% MMK)
                   </td>
                   <td className="py-2 text-right text-sm">
-                    {data.tax.toFixed(2)}
+                    {parseFloat(data.data.tax).toFixed(2)}
                   </td>
                 </tr>
                 <tr className="border-b border-gray-200">
@@ -113,7 +114,7 @@ const VoucherDetailsCardComponent = () => {
                     Net Total
                   </td>
                   <td className="py-2 text-right text-md font-bold">
-                    {data.netTotal.toFixed(2)}
+                    {parseFloat(data.data.net_total).toFixed(2)}
                   </td>
                 </tr>
               </tfoot>
@@ -148,7 +149,10 @@ const VoucherDetailsCardComponent = () => {
           Print Voucher
         </button>
 
-        <button onClick={handleDownloadPdf} className="text-white flex justify-center items-center gap-3 bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800">
+        <button
+          onClick={handleDownloadPdf}
+          className="text-white flex justify-center items-center gap-3 bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
+        >
           Download PDF
         </button>
       </div>

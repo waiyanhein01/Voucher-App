@@ -11,7 +11,7 @@ const SaleProductTableComponent = () => {
 
   const tax = total * 0.05;
 
-  const netTotal = total + tax;
+  const net_total = total + tax;
 
   // const {product:{price,product_name,id},cost,quantity} = records
   return (
@@ -21,7 +21,10 @@ const SaleProductTableComponent = () => {
           <thead className="group/head text-xs uppercase text-gray-700 dark:text-gray-400">
             <tr>
               <th className="bg-gray-50 px-6 py-3 group-first/head:first:rounded-tl-lg group-first/head:last:rounded-tr-lg dark:bg-gray-700">#</th>
-              <th className="bg-gray-50 px-6 py-3 group-first/head:first:rounded-tl-lg group-first/head:last:rounded-tr-lg dark:bg-gray-700">
+              <th className="bg-gray-50 px-6 py-3 text-nowrap group-first/head:first:rounded-tl-lg group-first/head:last:rounded-tr-lg dark:bg-gray-700">
+                Product id
+              </th>
+              <th className="bg-gray-50 px-6 py-3 text-nowrap group-first/head:first:rounded-tl-lg group-first/head:last:rounded-tr-lg dark:bg-gray-700">
                 Product name
               </th>
               <th className="bg-gray-50 px-6 py-3 group-first/head:first:rounded-tl-lg group-first/head:last:rounded-tr-lg dark:bg-gray-700 text-end">
@@ -54,7 +57,7 @@ const SaleProductTableComponent = () => {
             ) : (
               records.map((record, index) => (
                 <SaleTableRowComponent
-                  key={record.id}
+                  key={record.product_id}
                   record={record}
                   index={index}
                 />
@@ -105,7 +108,7 @@ const SaleProductTableComponent = () => {
                 Net Total
               </td>
               <td className="px-6 py-4 font-bold group-first/body:group-first/row:first:rounded-tl-lg group-first/body:group-first/row:last:rounded-tr-lg group-last/body:group-last/row:first:rounded-bl-lg group-last/body:group-last/row:last:rounded-br-lg text-end">
-                {netTotal}
+                {net_total}
               </td>
               <td className="px-6 py-4 group-first/body:group-first/row:first:rounded-tl-lg group-first/body:group-first/row:last:rounded-tr-lg group-last/body:group-last/row:first:rounded-bl-lg group-last/body:group-last/row:last:rounded-br-lg" />
             </tr>

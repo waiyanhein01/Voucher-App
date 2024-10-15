@@ -27,7 +27,7 @@ const SaleProductFormComponent = () => {
       changeQuantity(isExited.id, data.quantity);
     } else {
       addRecord({
-        id: Date.now(),
+        product_id: currentProduct.id,
         product: currentProduct,
         quantity: data.quantity,
         cost: data.quantity * currentProduct.price,
@@ -59,7 +59,7 @@ const SaleProductFormComponent = () => {
                   required
                 >
                   {!isLoading &&
-                    data?.map((product) => (
+                    data?.data?.map((product) => (
                       <option key={product.id} value={JSON.stringify(product)}>
                         {product.product_name}
                       </option>

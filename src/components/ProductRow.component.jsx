@@ -21,11 +21,11 @@ const ProductRowComponent = ({
     const res = await fetch(`${api}/products/${id}`, {
       method: "DELETE",
     });
-    console.log(res);
-    mutate(api + "/products");
     setDeleteLoading(false);
+    mutate(api + "/products");
+    const resJson = await res.json();
     if(res.status === 200){
-      toast.success(res.message);
+      toast.success(resJson.message);
     }
   };
 
@@ -43,7 +43,7 @@ const ProductRowComponent = ({
           {product_name}
         </td>
         <td className="px-6 py-4 text-end">{price}</td>
-        <td className="text-xs px-6 py-4 text-end">
+        <td className="text-xs px-6 py-4 text-end text-nowrap">
           <ShowDateComponent timestamp={created_at} />
         </td>
         <td className="px-6 py-4 text-end">

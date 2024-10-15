@@ -23,7 +23,7 @@ const VoucherInfoComponent = () => {
   const { records, resetRecord } = useRecordStore();
 
   const generateVoucherID = (length = 10) => {
-    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const characters = "ABCDE0123456789";
     let voucherID = "";
 
     for (let i = 0; i < length; i++) {
@@ -44,36 +44,48 @@ const VoucherInfoComponent = () => {
 
     const tax = total * 0.05;
 
-    const netTotal = total + tax;
-    const currentData = { ...data, records, total, tax, netTotal };
+    const net_total = total + tax;
+    const currentData = { ...data, records, total, tax, net_total };
+    console.log(currentData);
+
     const res = await fetch(api + "/vouchers", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Accept: "application/json",
       },
       body: JSON.stringify(currentData),
     });
 
-    const response = await res.json();
+    const resJson = await res.json();
 
-    setIsSending(false);
-    toast.success("Create voucher successfully");
-    resetRecord();
-    reset();
+    if (res.status === 201) {
+      setIsSending(false);
+      toast.success("Create voucher successfully");
+      resetRecord();
+      reset();
+    } else {
+      toast.error(resJson.message);
+      setIsSending(false);
+    }
+
     if (data.voucher_details) {
       nav("/voucher/details/" + response.id);
     }
   };
+
+  const date = new Date();
+
   return (
     <div className="">
       <div className=" grid grid-cols-6 gap-3">
-        <div className=" shadow rounded-lg p-4 md:col-span-4 col-span-6">
+        <div className=" shadow rounded-lg p-4 lg:col-span-4 col-span-6">
           <h1 className=" text-xl font-bold mb-3">Product</h1>
           <SaleProductFormComponent />
           <SaleProductTableComponent />
         </div>
 
-        <div className=" md:col-span-2 col-span-6">
+        <div className=" lg:col-span-2 col-span-6">
           <form
             className="shadow rounded-lg p-4 grid grid-cols-4 gap-3"
             onSubmit={handleSubmit(createVoucherHandle)}
@@ -180,8 +192,7 @@ const VoucherInfoComponent = () => {
                 {...register("sale_date", {
                   required: true,
                 })}
-                defaultValue={new Date().toISOString().split("T")[0]}
-                type="datetime-local"
+                type="date"
                 id="sale_date"
                 className={`bg-gray-50 border outline-none text-gray-900 text-sm rounded-lg ${
                   errors.sale_date
@@ -195,7 +206,7 @@ const VoucherInfoComponent = () => {
               )}
             </div>
 
-            <div className=" col-span-4 text-right">
+            <div className=" col-span-4 flex items-center justify-end">
               <label
                 htmlFor="voucher_details"
                 className="me-2 text-xs font-medium text-gray-900 dark:text-gray-300"
@@ -212,27 +223,33 @@ const VoucherInfoComponent = () => {
               />
             </div>
 
-            <div className=" col-span-4 text-right">
+            <div className=" col-span-4 flex items-center justify-end">
               <label
                 htmlFor="all_correct"
-                className="me-2 text-xs font-medium text-gray-900 dark:text-gray-300"
+                className={`me-2 text-xs font-medium text-gray-900 dark:text-gray-300 ${
+                  errors.all_correct && "text-red-500"
+                }`}
               >
                 Make sure all fields are correct!
               </label>
               <input
-                {...register("all_correct")}
+                {...register("all_correct", { required: true })}
                 id="all_correct"
                 type="checkbox"
                 form="formInfo"
                 defaultValue
-                required
-                className="w-4 h-4 text-cyan-700 bg-gray-100 border-gray-300 rounded focus:ring-cyan-600 dark:focus:ring-cyan-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+                className={`w-4 h-4 text-cyan-700 bg-gray-100 border-gray-300 rounded focus:ring-cyan-600 outline-none dark:focus:ring-cyan-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600 ${
+                  errors.all_correct && " border-red-500 focus:border-red-500"
+                }`}
               />
+              {/* {errors.all_correct && (
+                <span className=" text-red-500 text-xs">Select is required</span>
+              )} */}
             </div>
 
             <div className=" col-span-4 text-right">
               <button
-              disabled={isSending}
+                disabled={isSending}
                 type="submit"
                 className="disabled:opacity-40 text-white inline-flex gap-2 bg-cyan-700 hover:bg-cyan-800 focus:ring-1 focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-5"
               >
