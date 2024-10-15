@@ -11,14 +11,10 @@ import { debounce } from "lodash";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const ProductListsComponent = () => {
-  const [search, setSearch] = useState("");
-  const { data, isLoading, error } = useSWR(
-    search ? `${api}/products?product_name_like=${search}` : `${api}/products`,
-    fetcher
-  );
+  const { data, isLoading, error } = useSWR(`${api}/products`, fetcher);
 
   const searchHandler = debounce((e) => {
-    setSearch(e.target.value);
+    // setSearch(e.target.value);
   }, 500);
 
   return (
@@ -27,7 +23,7 @@ const ProductListsComponent = () => {
         onChange={searchHandler}
         url={"create"}
         btnName={"Create New Product"}
-        placeholder={"Search products(eg-apple)"}
+        placeholder={"Search products"}
         icon={<HiMiniPlus className=" size-5" />}
       />
 
@@ -37,7 +33,7 @@ const ProductListsComponent = () => {
           {isLoading ? (
             <div className="h-4 bg-gray-200 inline-flex rounded-full dark:bg-gray-700 w-5 animate-pulse"></div>
           ) : (
-            data.length
+            data.data.length
           )}
         </span>
         )
@@ -66,13 +62,13 @@ const ProductListsComponent = () => {
           <tbody>
             {isLoading ? (
               <ProductSkeletonComponent />
-            ) : data.length === 0 ? (
+            ) : data.data.length === 0 ? (
               <ProductEmptyRowComponent
                 colSpan={5}
                 title={"There is no product."}
               />
             ) : (
-              data.map((product) => (
+              data.data.map((product) => (
                 <ProductRowComponent key={product.id} product={product} />
               ))
             )}

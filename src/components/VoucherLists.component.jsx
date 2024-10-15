@@ -11,15 +11,14 @@ import { debounce } from "lodash";
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
 const VoucherListsComponent = () => {
-  const [search, setSearch] = useState("");
   const { data, isLoading, error } = useSWR(
-    search ? `${api}/vouchers?voucher_id_like=${search}` : `${api}/vouchers`,
+    `${api}/vouchers`,
     fetcher
   );
 
   const searchHandler = debounce((e) => {
-    setSearch(e.target.value);
   }, 500);
+
   return (
     <div className="">
       <SearchCreateBtnComponent
@@ -35,7 +34,7 @@ const VoucherListsComponent = () => {
           {isLoading ? (
             <div className="h-4 bg-gray-200 inline-flex rounded-full dark:bg-gray-700 w-5 animate-pulse"></div>
           ) : (
-            data.length
+            data.data.length
           )}
         </span>
         )
@@ -70,13 +69,13 @@ const VoucherListsComponent = () => {
           <tbody>
             {isLoading ? (
               <VoucherSkeletonComponent />
-            ) : data.length === 0 ? (
+            ) : data.data.length === 0 ? (
               <ProductEmptyRowComponent
                 title={"There is no voucher."}
                 colSpan={7}
               />
             ) : (
-              data?.map((voucher, index) => (
+              data?.data?.map((voucher, index) => (
                 <VoucherListRowComponent
                   key={voucher.id}
                   voucher={voucher}

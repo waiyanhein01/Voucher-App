@@ -26,7 +26,7 @@ const EditProductCardComponent = () => {
 
   const nav = useNavigate();
 
-  const createFormHandle = async (data) => {
+  const editFormHandle = async (data) => {
     setIsUpdating(true);
     await fetch(api + `/products/${id}`, {
       method: "PUT",
@@ -83,7 +83,7 @@ const EditProductCardComponent = () => {
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit(createFormHandle)} className=" mt-5">
+        <form onSubmit={handleSubmit(editFormHandle)} className=" mt-5">
           <div>
             <label
               htmlFor="product_name"
@@ -99,7 +99,7 @@ const EditProductCardComponent = () => {
                 minLength: 3,
                 maxLength: 50,
               })}
-              defaultValue={data.product_name}
+              defaultValue={data.data.product_name}
               type="text"
               id="product_name"
               className={`bg-gray-50 border outline-none text-gray-900 text-sm rounded-lg ${
@@ -127,7 +127,7 @@ const EditProductCardComponent = () => {
             </label>
             <input
               {...register("price", { required: true, min: 100, max: 20000 })}
-              defaultValue={data.price}
+              defaultValue={data.data.price}
               type="number"
               id="price"
               className={`bg-gray-50 border outline-none text-gray-900 text-sm rounded-lg ${

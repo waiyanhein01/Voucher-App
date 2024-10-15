@@ -18,12 +18,15 @@ const ProductRowComponent = ({
 
   const deleteApi = async (id) => {
     setDeleteLoading(true);
-    await fetch(`${api}/products/${id}`, {
+    const res = await fetch(`${api}/products/${id}`, {
       method: "DELETE",
     });
+    console.log(res);
     mutate(api + "/products");
     setDeleteLoading(false);
-    toast.success("Product delete successfully")
+    if(res.status === 200){
+      toast.success(res.json.message);
+    }
   };
 
   const deleteRowBtn = () => {

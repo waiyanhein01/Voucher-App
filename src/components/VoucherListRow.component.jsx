@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { HiOutlineTrash } from "react-icons/hi2";
 import ShowDateComponent from "./ShowDate.component";
-import { useSWRConfig } from "swr";
+import useSWR, { useSWRConfig } from "swr";
 import api from "../api/Api";
 import toast from "react-hot-toast";
 import { lineSpinner } from "ldrs";
 import { TbListDetails } from "react-icons/tb";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 lineSpinner.register();
-
 const VoucherListRowComponent = ({
   voucher: {
     id,
@@ -23,14 +22,20 @@ const VoucherListRowComponent = ({
 }) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const { mutate } = useSWRConfig();
+
+  
   const deleteVoucherRowHandler = async () => {
     setIsDeleting(true);
-    await fetch(api + "/vouchers/" + id, {
+    const res=await fetch(api + "/vouchers/" + id, {
       method: "DELETE",
     });
+    console.log(res)
     mutate(api + "/vouchers");
     setIsDeleting(false);
-    toast.success("Delete voucher successfully");
+ 
+    if(res.status === 200){
+      toast.success(res.json.message);
+    }
   };
 
   const nav = useNavigate();
@@ -51,7 +56,7 @@ const VoucherListRowComponent = ({
         </th>
         <td className="px-6 py-4">{customer_name}</td>
         <td className="px-6 py-4">{customer_email}</td>
-        <td className="px-6 py-4 text-right">{voucher_id}</td>
+        <td className="px-6 py-4 text-right text-nowrap">{voucher_id}</td>
         <td className="px-6 py-4 text-right text-nowrap text-xs">
           {/* {sale_date} */} <ShowDateComponent timestamp={sale_date} />
         </td>
